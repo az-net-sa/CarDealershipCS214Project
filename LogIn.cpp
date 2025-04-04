@@ -112,7 +112,9 @@ void adminInterFase(int Id){
     std::cout << "1. update or check users" << std::endl; // add , delete, update , get info
     std::cout << "2. update or check cars" << std::endl; // add , delete, update  , get info
     std::cout << "3. check orders And pre orders" << std::endl; // approve , cansel, update , refund , get Coustomer info
-    
+    if (previlege == 7) {
+        std::cout << "4. update or check admins" << std::endl; // add , delete, update , get info
+    }
 }
 void userInterFase(int id){
     std::string name;
