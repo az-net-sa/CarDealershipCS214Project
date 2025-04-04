@@ -1,0 +1,22 @@
+[
+    {
+        "name": "root",
+        "password": "R00tP@ssw0rd",
+        "previlege": "7"
+    },
+    {
+        "name": "Ahmed",
+        "password": "AhmedP@ssw0rd",
+        "previlege": "5"
+    },
+    {
+        "name": "Ali",
+        "password": "AliP@ssw0rd",
+        "previlege": "3"
+    },
+    {
+        "name": "Mohamed",
+        "password": "MohamedP@ssw0rd",
+        "previlege": "1"
+    }
+]
