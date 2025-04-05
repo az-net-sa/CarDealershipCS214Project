@@ -70,21 +70,29 @@ int userLogin(){  // this returns the user id or 0 if the admin is not found
                     return 0;
 }
 
-void createUser(){
+int createUser(){
     std::cout << "Creating a new user..." << std::endl;
+    Json::Value users;
+    std::ifstream users_file("users.json", std::ifstream::binary);
+    users_file >> users;
+    Json::Value new_user;
+    std::cout << "Please enter your name: " << std::endl;
+    std::string name;
+    std::cin >> name;
+    new_user["name"] = name;
+    std::cout << "Please enter your password: " << std::endl;
+    std::string password;
+    std::cin >> password;
+    new_user["password"] = password;
+    int newID = users[users.size() - 1]["id"].asInt() + 1;
+    new_user["id"] = newID;
+    users.append(new_user);
+    std::ofstream users_file_out("users.json");
+    users_file_out << users;
+    std::cout << "User created successfully!" << std::endl;
+    return newID;
 }
-void createAdmin(){
-    std::cout << "Creating a new admin..." << std::endl;
-}
-void deleteUser(){
-    std::cout << "Deleting a user..." << std::endl;
-}
-void deleteAdmin(){
-    std::cout << "Deleting an admin..." << std::endl;
-}
-void updateUser(){
-    std::cout << "Updating a user..." << std::endl;
-}
+
 void updateAdmin(){
     std::cout << "Updating an admin..." << std::endl;
 }
@@ -110,7 +118,7 @@ int main() {
             std::string create_account;
             std::cin >> create_account;
             if (create_account == "yes") {
-                createUser();
+                userInterFase( createUser() );
             } else if (create_account == "no") {
                 std::cout << "No proplem, You can create an account later." << std::endl;
             } else {

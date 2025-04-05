@@ -61,6 +61,7 @@ void adminInterFase(int Id){
         case 4:
             if (previlege == 7) {
                 std::cout << "You chose to update or check admins." << std::endl;
+                // updateAdmin();
             } else {
                 std::cout << "Invalid option." << std::endl;
             }
@@ -79,12 +80,17 @@ void userInterFase(int id){
     Json::Value users;
     std::ifstream users_file("users.json", std::ifstream::binary);
     users_file >> users;
-    for (int i = 0 ; i < users.size() ; i++){
+    int i;
+    for (i = 0 ; i < users.size() ; i++){
         if (users[i]["id"].asInt() == id) {
-            name = users[i]["name"].asString();
             break;
         }
     }
+    name = users[i]["name"].asString();
     std::cout << "Welcome " << name << "!" << std::endl;
     std::cout << "You are logged in as a user." << std::endl;
+    std::cout << "What would you like to do?" << std::endl;
+    std::cout << "choose the number of one of the following options:" << std::endl;
+    std::cout << "1. check cars" << std::endl; // get info
+    std::cout << "2. check orders And pre orders" << std::endl; // get info
 }
