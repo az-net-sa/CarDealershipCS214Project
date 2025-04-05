@@ -3,6 +3,7 @@
 #include <string>
 #include <jsoncpp/json/json.h>
 #include <string.h>
+#include "interFaces.h"
 /* helphull sourses:
 https://www.w3schools.com/CPP/cpp_files.asp
 https://stackoverflow.com/questions/32205981/reading-json-files-in-c
@@ -86,49 +87,6 @@ void updateUser(){
 }
 void updateAdmin(){
     std::cout << "Updating an admin..." << std::endl;
-}
-
-void adminInterFase(int Id){
-    std::string name;
-    Json::Value admins;
-    std::ifstream admins_file("admins.json", std::ifstream::binary);
-    admins_file >> admins;
-    for (int i = 0 ; i < admins.size() ; i++){
-        if (admins[i]["id"].asInt() == Id) {
-            name = admins[i]["name"].asString();
-            break;
-        }
-    }
-    std::cout << "Welcome " << name << "!" << std::endl;
-    std::cout << "You are logged in as an admin." << std::endl;
-    std::cout << "What would you like to do?" << std::endl;
-    int previlege = admins[Id]["previlege"].asInt();
-    if (previlege == 7) {
-        std::cout << "You have full previlege." << std::endl;
-    } else {
-        std::cout << "You have limited previlege." << std::endl;
-}
-    std::cout << "choose one of the following options:" << std::endl;
-    std::cout << "1. update or check users" << std::endl; // add , delete, update , get info
-    std::cout << "2. update or check cars" << std::endl; // add , delete, update  , get info
-    std::cout << "3. check orders And pre orders" << std::endl; // approve , cansel, update , refund , get Coustomer info
-    if (previlege == 7) {
-        std::cout << "4. update or check admins" << std::endl; // add , delete, update , get info
-    }
-}
-void userInterFase(int id){
-    std::string name;
-    Json::Value users;
-    std::ifstream users_file("users.json", std::ifstream::binary);
-    users_file >> users;
-    for (int i = 0 ; i < users.size() ; i++){
-        if (users[i]["id"].asInt() == id) {
-            name = users[i]["name"].asString();
-            break;
-        }
-    }
-    std::cout << "Welcome " << name << "!" << std::endl;
-    std::cout << "You are logged in as a user." << std::endl;
 }
 int main() {
     
