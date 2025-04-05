@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "make": "Toyota",
+        "model": "Camry",
+        "year": 2020,
+        "price": 84000,
+        "color": "black" ,
+        "quantity": 5
+    },
+    {
+        "id": 2,
+        "make": "Honda",
+        "model": "Accord",
+        "year": 2019,
+        "price": 62000,
+        "color": "white" ,
+        "quantity": 3
+
+    },
+    {
+        "id": 3,
+        "make": "Ford",
+        "model": "F150",
+        "year": 2021,
+        "price": 135000,
+        "color": "black" ,
+        "quantity": 0
+    }
+
+]
