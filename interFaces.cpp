@@ -100,7 +100,7 @@ void userInterFase(int id){
     switch (choice) {
         case 1:
             std::cout << "You chose to check cars." << std::endl;
-            orderACar(id);
+            orderACarInterface(id);
             break;
         case 2:
             std::cout << "You chose to check orders and pre orders." << std::endl;

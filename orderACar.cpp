@@ -3,6 +3,12 @@
 #include <string>
 #include <jsoncpp/json/json.h>
 #include "orderACar.h"
+/*
+helpfull sourses:
+the linked list book slides
+
+*/
+
 
 class Car{
     private:
@@ -23,6 +29,12 @@ class Car{
                       << ", Color: " << color << ", Price: " << price
                       << ", Year: " << year << ", Quantity: " << quantity << std::endl;
         }
+        bool isAvailable() {
+            return quantity > 0;
+        }
+        int getID() {
+            return id;
+        }
 };
 
 class carLinklist {
@@ -39,6 +51,8 @@ void listAll();
 void removeCar(int id);
 void addCar(Car car);
 void importCarsFromDataBase();
+bool CheckIfCarAvailable(int id);
+bool checkIfIdExists(int id);
 };
 
 carLinklist::carLinklist() {
@@ -87,14 +101,101 @@ void carLinklist::importCarsFromDataBase() {
 }
 
 
-bool orderACar(int buyerID){ // true if order is seccessful
-    carLinklist cars;
-    cars.importCarsFromDataBase();
-    std::cout << "You choosed to Order a new car!\n... listing cars:" << std::endl;
-    cars.listAll();
+bool carLinklist::checkIfIdExists(int id) {
+    node *temp;
+    temp = p;
+    while (temp != NULL)
+    {
+    if (temp -> data.getID() == id)
+        return true;;
+    
+    temp = temp -> link;
+    }
     return false;
+}
+
+bool carLinklist::CheckIfCarAvailable(int id) {
+    if (!checkIfIdExists(id))
+    {
+        std::cout << "wrong id!" << std::endl;
+        return false;
+    }
+    node *temp;
+    temp = p;
+    while (temp != NULL)
+    {
+    if (temp -> data.getID() == id)
+    {
+    // now we have found the car
+    // check if it is available
+    if (temp -> data.isAvailable())
+    {
+    std::cout << "Car is available! " << std::endl;
+    return true;
+
+    } else
+    {
+    std::cout << "Car is not available! " << std::endl;
+    return false;
+    }
+    break;
+    }
+    temp = temp -> link;
+    }
+
+    
+    return false;
+}
+
+void processOrder(int buyerID ,int carID){
+    std::cout << "You choosed to process your order!" << std::endl;
+}
+
+void processPreOrder(int buyerID , int carID){
+    std::cout << "You choosed to process your pre order!" << std::endl;
 }
 
 void checkOrders(int id){
     std::cout << "You choosed to check your orders!" << std::endl;
 }
+
+bool orderACarInterface(int buyerID){ // true if order is seccessful
+    carLinklist cars;
+    cars.importCarsFromDataBase();
+    std::cout << "You choosed to Order a new car!\n... listing cars:" << std::endl;
+    cars.listAll();
+    std::cout << "Please enter the car ID you want to order: " << std::endl;
+    int carID;
+    std::cin >> carID;
+    /* check if the car is available */
+    if (!cars.checkIfIdExists(carID))
+    {
+        std::cout << "Car ID does not exist!" << std::endl;
+        return false;
+    }
+    
+    if (cars.CheckIfCarAvailable(carID))
+    {
+    // now we have to reduce the car quantity in the database and set an order
+    processOrder(buyerID ,carID);
+    std::cout << "Order is set!" << std::endl;
+    } else
+    {
+    // now we have to set a pre order
+        std::cout << "Car is not available! You can set a pre order!" << std::endl;
+        std::cout << "Do you want to set a pre order? (y/n)" << std::endl;
+        std::string answer;
+        std::cin >> answer;
+        if (answer == "y")
+        {
+            processPreOrder(buyerID ,carID);
+            std::cout << "Pre order is set! We will contact you soon when it's Available" << std::endl;
+        } else
+        {
+            std::cout << "Pre order is not set!" << std::endl;
+        }
+    }
+    return false;
+}
+
+
