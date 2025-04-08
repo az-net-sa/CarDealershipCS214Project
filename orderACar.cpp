@@ -3,6 +3,8 @@
 #include <string>
 #include <jsoncpp/json/json.h>
 #include "orderACar.h"
+#include "processOrders.h"
+
 /*
 helpfull sourses:
 the linked list book slides
@@ -145,18 +147,6 @@ bool carLinklist::CheckIfCarAvailable(int id) {
 
     
     return false;
-}
-
-void processOrder(int buyerID ,int carID){
-    std::cout << "You choosed to process your order!" << std::endl;
-}
-
-void processPreOrder(int buyerID , int carID){
-    std::cout << "You choosed to process your pre order!" << std::endl;
-}
-
-void checkOrders(int id){
-    std::cout << "You choosed to check your orders!" << std::endl;
 }
 
 bool orderACarInterface(int buyerID){ // true if order is seccessful
