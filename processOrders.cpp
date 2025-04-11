@@ -7,8 +7,20 @@
 
 
 void processOrder(int buyerID ,int carID){
-    std::cout << "You choosed to process your order!" << std::endl;
+    std::cout << "You choosed to process your order!" << std::endl ;
     // now we have to reduce the car quantity in the database and set an order and save the new quantity and the order details in there DBs
+    carLinklist cars;
+    cars.importCarsFromDataBase();
+    if (cars.checkIfIdExists(carID))
+    {
+    cars.reduceCarQuantity(carID);
+    cars.exportCarsToDataBase();
+
+    } else
+    {
+        std::cout << "Car ID does not exist!" << std::endl;
+        return; 
+    }
 }
 
 void processPreOrder(int buyerID , int carID){

@@ -17,73 +17,6 @@ USER INTERFACE
 
 */
 
-class Car{
-    private:
-        int id;
-        std::string make;
-        std::string model;
-        std::string color;
-        int price;
-        int year;
-        int quantity;
-    public:
-        // Constructor
-        Car() : id(0), make(""), model(""), color(""), price(0), year(0), quantity(0) {}
-        Car(int id, std::string make, std::string model, std::string color, int price, int year, int quantity)
-            : id(id), make(make), model(model), color(color), price(price), year(year), quantity(quantity) {}
-        void display() {
-            std::cout << "Car ID: " << id << ", Name: " << make << " " <<  model
-                      << ", Color: " << color << ", Price: " << price
-                      << ", Year: " << year << ", Quantity: " << quantity << std::endl;
-        }
-        bool isAvailable() {
-            return quantity > 0;
-        }
-        int getID() {
-            return id;
-        }
-        std::string getMake() {
-            return make;
-        }
-        std::string getModel() {
-            return model;
-        }
-        std::string getColor() {
-            return color;
-        }
-        int getPrice() {
-            return price;
-        }
-        int getYear() {
-            return year;
-        }
-        int getQuantity() {
-            return quantity;
-        }
-        Car operator--() {
-            quantity--;
-            return *this;
-        } // No real need for this operator, just flexing
-};
-
-class carLinklist {
-private:
-struct node
-{
-Car data;
-node* link;
-} *p;
-public:
-carLinklist();
-~carLinklist();
-void listAll();
-bool removeCar(int id);
-void appendCar(Car car);
-void importCarsFromDataBase();
-void exportCarsToDataBase();
-bool CheckIfCarAvailable(int id);
-bool checkIfIdExists(int id);
-};
 
 carLinklist::carLinklist() {
     p = NULL;
@@ -235,8 +168,35 @@ bool carLinklist::removeCar(int id){
     
 } // Need to clean up the function
 
+Car carLinklist::getCar(int id) {
+    node *temp;
+    temp = p;
+    while (temp != NULL)
+    {
+        if (temp -> data.getID() == id)
+        {
+            return temp -> data;
+        }
+        temp = temp -> link;
+    }
+    std::cout << "Car not found!" << std::endl;
+    return Car();
+}
 
-
+void carLinklist::reduceCarQuantity(int id) {
+    node *temp;
+    temp = p;
+    while (temp != NULL)
+    {
+        if (temp -> data.getID() == id)
+        {
+            temp -> data = --temp -> data;
+            return;
+        }
+        temp = temp -> link;
+    }
+    std::cout << "Car not found!" << std::endl;
+}
 bool orderACarInterface(int buyerID){ // true if order is seccessful
     carLinklist cars;
     cars.importCarsFromDataBase();
