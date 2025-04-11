@@ -11,6 +11,21 @@
 # For user: orderACarInterface(Almost Done) , checkOrders() , logout()
 */
 
+void updateUsersInterFace(){
+    std::cout << "You chose to update or check users." << std::endl;
+}
+
+void updateAdminsInterFace(){
+    std::cout << "You chose to update or check admins." << std::endl;
+}
+
+void updateCarInterFace(){
+    std::cout << "You chose to update or check cars." << std::endl;
+}
+
+void logout(){
+    std::cout << "You chose to logout." << std::endl;
+}
 void adminInterFase(int Id){
     std::string name;
     Json::Value admins;
@@ -47,19 +62,19 @@ void adminInterFase(int Id){
     switch (option) {
         case 1:
             std::cout << "You chose to update or check cars." << std::endl;
-            // updateCar();
+            updateCarInterFace();
             break;
         case 2:
         if (previlege > 2) {
             std::cout << "You chose to check orders and pre orders." << std::endl;
-            // checkOrders();
+            checkOrders(0); // 0 for admin
         } else {
             std::cout << "invaled option" << std::endl;
         }
         case 3:
         if (previlege > 4) {
             std::cout << "You chose to update or check users." << std::endl;
-            // updateUsers();
+            updateUsersInterFace();
         } else {
             std::cout << "invaled option" << std::endl;
         }
@@ -67,14 +82,14 @@ void adminInterFase(int Id){
         case 4:
             if (previlege == 7) {
                 std::cout << "You chose to update or check admins." << std::endl;
-                // updateAdmins();
+                updateAdminsInterFace();
             } else {
                 std::cout << "Invalid option." << std::endl;
             }
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
-            // logout();
+            logout();
             break;
         default:
             std::cout << "Invalid option." << std::endl;
@@ -115,7 +130,7 @@ void userInterFase(int id){
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
-            // logout();
+            logout();
             break;
         default:
             std::cout << "Invalid option." << std::endl;

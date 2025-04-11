@@ -42,6 +42,28 @@ class Car{
         int getID() {
             return id;
         }
+        std::string getMake() {
+            return make;
+        }
+        std::string getModel() {
+            return model;
+        }
+        std::string getColor() {
+            return color;
+        }
+        int getPrice() {
+            return price;
+        }
+        int getYear() {
+            return year;
+        }
+        int getQuantity() {
+            return quantity;
+        }
+        Car operator--() {
+            quantity--;
+            return *this;
+        } // No real need for this operator, just flexing
 };
 
 class carLinklist {
@@ -56,7 +78,7 @@ carLinklist();
 ~carLinklist();
 void listAll();
 bool removeCar(int id);
-void addCar(Car car);
+void appendCar(Car car);
 void importCarsFromDataBase();
 void exportCarsToDataBase();
 bool CheckIfCarAvailable(int id);
@@ -81,7 +103,7 @@ void carLinklist::listAll() {
         current = current->link;
     }
 }
-void carLinklist::addCar(Car car) {
+void carLinklist::appendCar(Car car) {
     node* newNode = new node;
     newNode->data = car;
     newNode->link = NULL;
@@ -104,7 +126,7 @@ void carLinklist::importCarsFromDataBase() {
         Car car(cars[i]["id"].asInt(), cars[i]["make"].asString(), cars[i]["model"].asString(),
                 cars[i]["color"].asString(), cars[i]["price"].asInt(), cars[i]["year"].asInt(),
                 cars[i]["quantity"].asInt());
-        addCar(car);
+            appendCar(car);
     }
 }
 
@@ -153,7 +175,23 @@ bool carLinklist::CheckIfCarAvailable(int id) {
     return false;
 }
 void carLinklist::exportCarsToDataBase(){
-      
+    Json::Value cars;
+    node* current = p;
+    while (current != NULL) {
+        Json::Value car;
+        car["id"] = current->data.getID();
+        car["make"] = current->data.getMake();
+        car["model"] = current->data.getModel();
+        car["color"] = current->data.getColor();
+        car["price"] = current->data.getPrice();
+        car["year"] = current->data.getYear();
+        car["quantity"] = current->data.getQuantity();
+        cars.append(car);
+        current = current->link;
+    }
+    std::ofstream cars_file("cars.json");
+    cars_file << cars;
+    cars_file.close();
 }
 
 bool carLinklist::removeCar(int id){
