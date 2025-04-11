@@ -3,8 +3,13 @@
 #include <string>
 #include <jsoncpp/json/json.h>
 #include "interFaces.h"
-#include "orderACar.h"
-
+#include "orderACar.h" // This inclaude orderACarInterface(int id) , checkOrders() , checkOrders()
+/*
+# TO DO:
+# USER INTERFACE
+# For admin: updateCar() , checkOrders() , updateUsers() , updateAdmins() , logout()
+# For user: orderACarInterface(Almost Done) , checkOrders() , logout()
+*/
 
 void adminInterFase(int Id){
     std::string name;
@@ -54,7 +59,7 @@ void adminInterFase(int Id){
         case 3:
         if (previlege > 4) {
             std::cout << "You chose to update or check users." << std::endl;
-            // updateUser();
+            // updateUsers();
         } else {
             std::cout << "invaled option" << std::endl;
         }
@@ -62,7 +67,7 @@ void adminInterFase(int Id){
         case 4:
             if (previlege == 7) {
                 std::cout << "You chose to update or check admins." << std::endl;
-                // updateAdmin();
+                // updateAdmins();
             } else {
                 std::cout << "Invalid option." << std::endl;
             }
@@ -94,6 +99,8 @@ void userInterFase(int id){
     std::cout << "choose the number of one of the following options:" << std::endl;
     std::cout << "1. check cars" << std::endl; // get info
     std::cout << "2. check orders And pre orders" << std::endl; // get info
+    std::cout << "Or you can choose 0 to logout" << std::endl;
+    std::cout << "Please enter your choice: " << std::endl;
 
     int choice = 0;
     std::cin >> choice;
@@ -105,6 +112,10 @@ void userInterFase(int id){
         case 2:
             std::cout << "You chose to check orders and pre orders." << std::endl;
             checkOrders(id);
+            break;
+        case 0:
+            std::cout << "Exiting..." << std::endl;
+            // logout();
             break;
         default:
             std::cout << "Invalid option." << std::endl;

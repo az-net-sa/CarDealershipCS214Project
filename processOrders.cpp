@@ -14,8 +14,10 @@ void processOrder(int buyerID ,int carID){
 void processPreOrder(int buyerID , int carID){
     std::cout << "You choosed to process your pre order!" << std::endl;
     // now we have to set a pre order and save the buyer place in the queue and the pre order details in there DBs
+
+    // use queue datastructure to save the buyer place in the queue
 }
 
-void checkOrders(int id){
+void checkOrders(int buyerID){
     std::cout << "You choosed to check your orders!" << std::endl;
 }

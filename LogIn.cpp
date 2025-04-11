@@ -9,6 +9,10 @@ https://www.w3schools.com/CPP/cpp_files.asp
 https://stackoverflow.com/questions/32205981/reading-json-files-in-c
 
 */
+/*
+TO DO:
+USER INTERFACE
+*/ 
 int adminLogin(){ // this returns the admin id or 0 if the admin is not found
     Json::Value admins;
     std::ifstream admins_file("admins.json", std::ifstream::binary);
@@ -56,8 +60,6 @@ int userLogin(){  // this returns the user id or 0 if the admin is not found
                 std::string password;
                 std::cin >> password;
                 if (users[i]["password"].asString() == password) {
-
-
                     return users[i]["id"].asInt();
                 } else {
                     std::cout << "Incorrect password." << std::endl;
@@ -93,9 +95,7 @@ int createUser(){
     return newID;
 }
 
-void updateAdmin(){
-    std::cout << "Updating an admin..." << std::endl;
-}
+
 int main() {
     
     std::cout << "Hello!" << std::endl << "Are you a user or an admin?" << std::endl;
@@ -141,4 +141,3 @@ int main() {
         std::cout << "Invalid user type." << std::endl;
     }
     }
- 

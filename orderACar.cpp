@@ -11,6 +11,11 @@ the linked list book slides
 
 */
 
+/*
+TO DO:
+USER INTERFACE
+
+*/
 
 class Car{
     private:
@@ -50,9 +55,10 @@ public:
 carLinklist();
 ~carLinklist();
 void listAll();
-void removeCar(int id);
+bool removeCar(int id);
 void addCar(Car car);
 void importCarsFromDataBase();
+void exportCarsToDataBase();
 bool CheckIfCarAvailable(int id);
 bool checkIfIdExists(int id);
 };
@@ -144,10 +150,54 @@ bool carLinklist::CheckIfCarAvailable(int id) {
     }
     temp = temp -> link;
     }
-
-    
     return false;
 }
+void carLinklist::exportCarsToDataBase(){
+      
+}
+
+bool carLinklist::removeCar(int id){
+    bool found = false;
+    if (!checkIfIdExists(id))
+    {
+        std::cout << "Car ID does not exist!" << std::endl;
+        return false;
+    }
+    node *old, *temp;
+    temp = p;
+    while (temp != NULL)
+    {
+    if (temp -> data.getID()  == id)
+    {
+    found = true;
+    if (temp == p)
+    p = temp -> link;
+
+    else
+    old -> link = temp -> link;
+    delete temp;
+    std::cout << "Car removed!" << std::endl;
+    exportCarsToDataBase();
+    return true;
+    }
+    else
+    {
+    old = temp;
+    temp = temp -> link;
+    }
+    }
+    if (found)
+    {
+    std::cout << "Car removed!" << std::endl;
+    exportCarsToDataBase();
+    return true;
+    }
+    std::cout << "Car not found!" << std::endl;
+    return false;
+    
+} // Need to clean up the function
+
+
 
 bool orderACarInterface(int buyerID){ // true if order is seccessful
     carLinklist cars;
@@ -169,6 +219,7 @@ bool orderACarInterface(int buyerID){ // true if order is seccessful
     // now we have to reduce the car quantity in the database and set an order
     processOrder(buyerID ,carID);
     std::cout << "Order is set!" << std::endl;
+        // Order details are saved in the database
     } else
     {
     // now we have to set a pre order
@@ -176,10 +227,11 @@ bool orderACarInterface(int buyerID){ // true if order is seccessful
         std::cout << "Do you want to set a pre order? (y/n)" << std::endl;
         std::string answer;
         std::cin >> answer;
-        if (answer == "y")
+        if (answer == "y" || answer == "Y" || answer == "Yes" || answer == "yes")
         {
             processPreOrder(buyerID ,carID);
             std::cout << "Pre order is set! We will contact you soon when it's Available" << std::endl;
+            // Pre order details are saved in the database
         } else
         {
             std::cout << "Pre order is not set!" << std::endl;
@@ -187,5 +239,3 @@ bool orderACarInterface(int buyerID){ // true if order is seccessful
     }
     return false;
 }
-
-
