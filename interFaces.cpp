@@ -7,25 +7,128 @@
 /*
 # TO DO:
 # USER INTERFACE
-# For admin: updateCar() , checkOrders() , updateUsers() , updateAdmins() , logout()
+# For admin: updateCar() , checkOrders() , updateUsersInterFace(Done!) , updateAdmins() , logout()
 # For user: orderACarInterface(Almost Done) , checkOrders() , logout()
 */
 
 void updateUsersInterFace(){
     std::cout << "You chose to update or check users." << std::endl;
+    while (1){ // Add an infinite loop to keep asking for input until user exits
+    std::cout << "What would you like to do?" << std::endl;
+    std::cout << "1. get users info" << std::endl;
+    std::cout << "2. add new user" << std::endl;
+    std::cout << "3. delete user" << std::endl;
+    std::cout << "4. update user" << std::endl;
+    std::cout << "Or you can choose 0 to exit" << std::endl;
+    std::cout << "Please enter your choice: " << std::endl;
+    int option;
+    std::cin >> option;
+    switch (option) {
+        // Add do while to keep asking for input until he exits
+        case 1:
+            std::cout << "You chose to get users info." << std::endl;
+            // getUsersInfo();
+            break;
+        case 2:
+            std::cout << "You chose to add new user." << std::endl;
+            // addNewUser();
+            break;
+        case 3:
+            std::cout << "You chose to delete user." << std::endl;
+            // deleteUser();
+            break;
+        case 4:
+            std::cout << "You chose to update user." << std::endl;
+            // updateUser();
+            break;
+        case 0:
+            std::cout << "Exiting..." << std::endl;
+            return;
+        default:
+            std::cout << "Invalid option." << std::endl;
+            break;
+        }
+    }   
 }
 
 void updateAdminsInterFace(){
     std::cout << "You chose to update or check admins." << std::endl;
+    std::cout << "What would you like to do?" << std::endl;
+    std::cout << "1. get admins info" << std::endl;
+    std::cout << "2. add new admin" << std::endl;
+    std::cout << "3. delete admin" << std::endl;
+    std::cout << "4. update admin" << std::endl;
+    std::cout << "Or you can choose 0 to exit" << std::endl;
+    std::cout << "Please enter your choice: " << std::endl;
+    int option;
+    std::cin >> option;
+    switch (option) {
+        // Add do while to keep asking for input until he exits
+        case 1:
+            std::cout << "You chose to get admins info." << std::endl;
+            // getAdminsInfo();
+            break;
+        case 2:
+            std::cout << "You chose to add new admin." << std::endl;
+            // addNewAdmin();
+            break;
+        case 3:
+            std::cout << "You chose to delete admin." << std::endl;
+            // deleteAdmin();
+            break;
+        case 4:
+            std::cout << "You chose to update admin." << std::endl;
+            // updateAdmin();
+            break;
+        case 0:
+            std::cout << "Exiting..." << std::endl;
+            return;
+        default:
+            std::cout << "Invalid option." << std::endl;
+            break;
+    }
 }
 
 void updateCarInterFace(){
     std::cout << "You chose to update or check cars." << std::endl;
+    std::cout << "What would you like to do?" << std::endl;
+    std::cout << "1. get cars info" << std::endl;
+    std::cout << "2. add new car" << std::endl;
+    std::cout << "3. delete car" << std::endl;
+    std::cout << "4. update car" << std::endl;
+    std::cout << "Or you can choose 0 to exit" << std::endl;
+    std::cout << "Please enter your choice: " << std::endl;
+    int option;
+    std::cin >> option;
+    switch (option) {
+        // Add do while to keep asking for input until he exits
+        case 1:
+            std::cout << "You chose to get cars info." << std::endl;
+            // getCarsInfo();
+            break;
+        case 2:
+            std::cout << "You chose to add new car." << std::endl;
+            // addNewCar();
+            break;
+        case 3:
+            std::cout << "You chose to delete car." << std::endl;
+            // deleteCar();
+            break;
+        case 4:
+            std::cout << "You chose to modify car." << std::endl;
+            // modifyCar();
+            break;
+        case 0:
+            std::cout << "Exiting..." << std::endl;
+            return;
+        default:
+            std::cout << "Invalid option." << std::endl;
+            break;
+    }
 }
 
-void logout(){
-    std::cout << "You chose to logout." << std::endl;
-}
+
+
 void adminInterFase(int Id){
     std::string name;
     Json::Value admins;
@@ -89,8 +192,7 @@ void adminInterFase(int Id){
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
-            logout();
-            break;
+            return;
         default:
             std::cout << "Invalid option." << std::endl;
             break;
@@ -130,8 +232,7 @@ void userInterFase(int id){
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
-            logout();
-            break;
+            return;
         default:
             std::cout << "Invalid option." << std::endl;
             break;
