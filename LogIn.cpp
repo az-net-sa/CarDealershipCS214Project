@@ -11,6 +11,9 @@ https://stackoverflow.com/questions/32205981/reading-json-files-in-c
 /*
 TO DO:
 USER INTERFACE, DONE!
+
+Note:
+This file Only go to adminInterFase() and userInterFase() functions in interFaces.cpp
 */ 
 int adminLogin(){ // this returns the admin id or 0 if the admin is not found
     Json::Value admins;

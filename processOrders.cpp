@@ -15,7 +15,6 @@ void processOrder(int buyerID ,int carID){
     {
     cars.reduceCarQuantity(carID);
     cars.exportCarsToDataBase();
-
     } else
     {
         std::cout << "Car ID does not exist!" << std::endl;

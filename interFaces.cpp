@@ -89,7 +89,7 @@ void updateAdminsInterFace(){
     }
 }
 
-void updateCarInterFace(){
+void updateCarsInterFace(){
     std::cout << "You chose to update or check cars." << std::endl;
     std::cout << "What would you like to do?" << std::endl;
     std::cout << "1. get cars info" << std::endl;
@@ -165,7 +165,7 @@ void adminInterFase(int Id){
     switch (option) {
         case 1:
             std::cout << "You chose to update or check cars." << std::endl;
-            updateCarInterFace();
+            updateCarsInterFace();
             break;
         case 2:
         if (previlege > 2) {
