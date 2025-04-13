@@ -2,9 +2,9 @@
 #include <fstream>
 #include <string>
 #include <jsoncpp/json/json.h>
-// #include "orderACar.h"
-// #include "processOrders.h"
-// #include "interFaces.h"
+#include "orderACar.h"
+#include "processOrders.h"
+#include "interFaces.h"
 #include "adminActions.h"
 #include "orderACar.h"
 
@@ -26,13 +26,21 @@ void updateUser(int UserID){
 
 }
 
-void printAdminsInfo();
+void printAdminsInfo(){
 
-void addNewAdmin();
+}
 
-void deleteAdmin(int adminID);
+void addNewAdmin(){
 
-void updateAdmin(int adminID);
+}
+
+void deleteAdmin(int adminID){
+
+}
+
+void updateAdmin(int adminID){
+
+}
 
 // Cars
 void printCarsInfo(){

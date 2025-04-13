@@ -4,6 +4,7 @@
 #include <jsoncpp/json/json.h>
 #include "interFaces.h"
 #include "orderACar.h" // This inclaude orderACarInterface(int id) , checkOrders() , checkOrders()
+#include "adminActions.h" 
 /*
 # TO DO:
 # ADD USER INTERFACE
@@ -27,19 +28,33 @@ void updateUsersInterFace(){
         // Add do while to keep asking for input until he exits
         case 1:
             std::cout << "You chose to get users info." << std::endl;
-            // getUsersInfo();
+            printUsersInfo();
             break;
         case 2:
             std::cout << "You chose to add new user." << std::endl;
-            // addNewUser();
+            addNewUser();
             break;
         case 3:
             std::cout << "You chose to delete user." << std::endl;
-            // deleteUser();
+            std::cout << "Please enter the user ID you want to delete: , or you can inter 0 to cancel" << std::endl;
+            int UserID;
+            std::cin >> UserID;
+            if (UserID == 0) {
+                std::cout << "Cancelling..." << std::endl;
+                break;
+            }
+            deleteUser(UserID);
             break;
         case 4:
             std::cout << "You chose to update user." << std::endl;
-            // updateUser();
+            std::cout << "Please enter the user ID you want to update: , or you can inter 0 to cancel" << std::endl;
+            int userID;
+            std::cin >> userID;
+            if (userID == 0) {
+                std::cout << "Cancelling..." << std::endl;
+                break;
+            }
+            updateUser(userID);
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
@@ -66,19 +81,33 @@ void updateAdminsInterFace(){
         // Add do while to keep asking for input until he exits
         case 1:
             std::cout << "You chose to get admins info." << std::endl;
-            // getAdminsInfo();
+            printAdminsInfo();
             break;
         case 2:
             std::cout << "You chose to add new admin." << std::endl;
-            // addNewAdmin();
+            addNewAdmin();
             break;
         case 3:
             std::cout << "You chose to delete admin." << std::endl;
-            // deleteAdmin();
+            std::cout << "Please enter the admin ID you want to delete: , or you can inter 0 to cancel" << std::endl;
+            int adminID;
+            std::cin >> adminID;
+            if (adminID == 0) {
+                std::cout << "Cancelling..." << std::endl;
+                break;
+            }
+            deleteAdmin(adminID);
             break;
         case 4:
             std::cout << "You chose to update admin." << std::endl;
-            // updateAdmin();
+            std::cout << "Please enter the admin ID you want to update: , or you can inter 0 to cancel" << std::endl;
+            int adminId;
+            std::cin >> adminID;
+            if (adminID == 0) {
+                std::cout << "Cancelling..." << std::endl;
+                break;
+            }        
+            updateAdmin(adminID);
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
@@ -94,8 +123,7 @@ void updateCarsInterFace(){
     std::cout << "What would you like to do?" << std::endl;
     std::cout << "1. get cars info" << std::endl;
     std::cout << "2. add new car" << std::endl;
-    std::cout << "3. delete car" << std::endl;
-    std::cout << "4. update car" << std::endl;
+    std::cout << "3. update car" << std::endl;
     std::cout << "Or you can choose 0 to exit" << std::endl;
     std::cout << "Please enter your choice: " << std::endl;
     int option;
@@ -104,19 +132,23 @@ void updateCarsInterFace(){
         // Add do while to keep asking for input until he exits
         case 1:
             std::cout << "You chose to get cars info." << std::endl;
-            // getCarsInfo();
+            printCarsInfo();
             break;
         case 2:
             std::cout << "You chose to add new car." << std::endl;
-            // addNewCar();
+            addNewCar();
             break;
+
         case 3:
-            std::cout << "You chose to delete car." << std::endl;
-            // deleteCar();
-            break;
-        case 4:
             std::cout << "You chose to modify car." << std::endl;
-            // modifyCar();
+            std::cout << "Please enter the car ID you want to modify: , or you can inter 0 to cancel" << std::endl;
+            int carID;
+            std::cin >> carID;
+            if (carID == 0) {
+                std::cout << "Cancelling..." << std::endl;
+                break;
+            }
+            modifyCar(carID);
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
@@ -145,7 +177,8 @@ void adminInterFase(int Id){
     std::cout << "You are logged in as an admin." << std::endl;
     std::cout << "What would you like to do?" << std::endl;
     int previlege = admins[i]["previlege"].asInt();
-
+    while (1)
+    {  
     std::cout << "choose the number of one of the following options:" << std::endl;
     std::cout << "1. update or check cars" << std::endl; // add , delete, update  , get info
     if (previlege > 2) {
@@ -198,6 +231,7 @@ void adminInterFase(int Id){
             break;
     }
 }
+}
 void userInterFase(int id){
     std::string name;
     Json::Value users;
@@ -212,6 +246,7 @@ void userInterFase(int id){
     name = users[i]["name"].asString();
     std::cout << "Welcome " << name << "!" << std::endl;
     std::cout << "You are logged in as a user." << std::endl;
+    while (1) {
     std::cout << "What would you like to do?" << std::endl;
     std::cout << "choose the number of one of the following options:" << std::endl;
     std::cout << "1. check cars" << std::endl; // get info
@@ -237,4 +272,5 @@ void userInterFase(int id){
             std::cout << "Invalid option." << std::endl;
             break;
     }
+}
 }
