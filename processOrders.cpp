@@ -57,3 +57,14 @@ void checkOrders(int buyerID){
 
     
 }
+
+void checkPreOrders(int buyerID){
+    if (buyerID == 0)
+    {
+      // admin
+      std::cout << "You choosed to check all pre orders!" << std::endl;
+    } else {
+      // user
+      std::cout << "You choosed to check your pre orders!" << std::endl;
+    }
+}
