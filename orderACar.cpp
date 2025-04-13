@@ -93,12 +93,10 @@ bool carLinklist::CheckIfCarAvailable(int id) {
     // check if it is available
     if (temp -> data.isAvailable())
     {
-    std::cout << "Car is available! " << std::endl;
     return true;
 
     } else
     {
-    std::cout << "Car is not available! " << std::endl;
     return false;
     }
     break;
@@ -201,23 +199,29 @@ bool orderACarInterface(int buyerID){ // true if order is seccessful
     carLinklist cars;
     cars.importCarsFromDataBase();
     std::cout << "You choosed to Order a new car!\n... listing cars:" << std::endl;
+    while (1)
+    {
     cars.listAll();
-    std::cout << "Please enter the car ID you want to order: " << std::endl;
+    std::cout << "Please enter the car ID you want to order: , or you can inter 0 to cancel " << std::endl;
     int carID;
     std::cin >> carID;
-    /* check if the car is available */
-    if (!cars.checkIfIdExists(carID))
+    if (carID == 0)
     {
-        std::cout << "Car ID does not exist!" << std::endl;
+        std::cout << "Cancelling..." << std::endl;
         return false;
     }
-    
+    /* check if the car is available */
+    if (!cars.checkIfIdExists(carID))
+        std::cout << "Car ID does not exist!" << std::endl;
+    else {
+
     if (cars.CheckIfCarAvailable(carID))
     {
     // now we have to reduce the car quantity in the database and set an order
     processOrder(buyerID ,carID);
     std::cout << "Order is set!" << std::endl;
         // Order details are saved in the database
+        return true;
     } else
     {
     // now we have to set a pre order
@@ -230,10 +234,11 @@ bool orderACarInterface(int buyerID){ // true if order is seccessful
             processPreOrder(buyerID ,carID);
             std::cout << "Pre order is set! We will contact you soon when it's Available" << std::endl;
             // Pre order details are saved in the database
+            return true;
         } else
         {
             std::cout << "Pre order is not set!" << std::endl;
         }
+    }}
     }
-    return false;
 }

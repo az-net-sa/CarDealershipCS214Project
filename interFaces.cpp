@@ -8,8 +8,8 @@
 /*
 # TO DO:
 # ADD USER INTERFACE
-# For admin: updateCar() , checkOrders() , updateUsersInterFace(Done!) , updateAdmins() , logout()
-# For user: orderACarInterface(Almost Done) , checkOrders() , logout()
+# For admin: update{Users/admins/cars}InterFace(Done!) ,  checkOrders(0) , logout(Done!)
+# For user: orderACarInterface(Almost Done) , checkOrders() , logout(Done!)
 */
 
 void updateUsersInterFace(){
@@ -251,6 +251,7 @@ void userInterFase(int id){
     std::cout << "choose the number of one of the following options:" << std::endl;
     std::cout << "1. check cars" << std::endl; // get info
     std::cout << "2. check orders And pre orders" << std::endl; // get info
+    std::cout << "3. buy A car" << std::endl;
     std::cout << "Or you can choose 0 to logout" << std::endl;
     std::cout << "Please enter your choice: " << std::endl;
 
@@ -259,11 +260,15 @@ void userInterFase(int id){
     switch (choice) {
         case 1:
             std::cout << "You chose to check cars." << std::endl;
-            orderACarInterface(id);
+            printCarsInfo();
             break;
         case 2:
             std::cout << "You chose to check orders and pre orders." << std::endl;
             checkOrders(id);
+            break;
+        case 3:
+            std::cout << "You chose to buy a car." << std::endl;
+            orderACarInterface(id);
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
