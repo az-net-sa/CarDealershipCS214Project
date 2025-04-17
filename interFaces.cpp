@@ -12,7 +12,7 @@
 # For user: orderACarInterface(Almost Done) , checkOrders() , logout(Done!)
 */
 
-void updateUsersInterFace(){
+void updateUsersInterFace(){ // Will not be implemented at all
     std::cout << "You chose to update or check users." << std::endl;
     while (1){ // Add an infinite loop to keep asking for input until user exits
     std::cout << "What would you like to do?" << std::endl;
@@ -66,7 +66,7 @@ void updateUsersInterFace(){
     }   
 }
 
-void updateAdminsInterFace(){
+void updateAdminsInterFace(){ // Will not be implemented at all
     std::cout << "You chose to update or check admins." << std::endl;
     std::cout << "What would you like to do?" << std::endl;
     std::cout << "1. get admins info" << std::endl;
@@ -118,12 +118,13 @@ void updateAdminsInterFace(){
     }
 }
 
-void updateCarsInterFace(){
+void updateCarsInterFace(){ // TO DO!
     std::cout << "You chose to update or check cars." << std::endl;
     std::cout << "What would you like to do?" << std::endl;
     std::cout << "1. get cars info" << std::endl;
     std::cout << "2. add new car" << std::endl;
     std::cout << "3. update car" << std::endl;
+    std::cout << "4. update stocks for cars" << std::endl;
     std::cout << "Or you can choose 0 to exit" << std::endl;
     std::cout << "Please enter your choice: " << std::endl;
     int option;
@@ -132,11 +133,11 @@ void updateCarsInterFace(){
         // Add do while to keep asking for input until he exits
         case 1:
             std::cout << "You chose to get cars info." << std::endl;
-            printCarsInfo();
+            printCarsInfo(); // have not implemented yet
             break;
         case 2:
             std::cout << "You chose to add new car." << std::endl;
-            addNewCar();
+            addNewCar(); // may not be implemented
             break;
 
         case 3:
@@ -148,7 +149,18 @@ void updateCarsInterFace(){
                 std::cout << "Cancelling..." << std::endl;
                 break;
             }
-            modifyCar(carID);
+            modifyCar(carID); // may not be implemented
+            break;
+        case 4:
+            std::cout << "You chose to update stocks for cars." << std::endl;
+            std::cout << "Please enter the car ID you want to update stocks for: , or you can inter 0 to cancel" << std::endl;
+            int carId;
+            std::cin >> carId;
+            if (carId == 0) {
+                std::cout << "Cancelling..." << std::endl;
+                break;
+            }
+            updateCarStocks(carId); // TO DO!
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
@@ -198,7 +210,7 @@ void adminInterFase(int Id){
     switch (option) {
         case 1:
             std::cout << "You chose to update or check cars." << std::endl;
-            updateCarsInterFace();
+            updateCarsInterFace(); // TO DO!
             break;
         case 2:
         if (previlege > 2) {
@@ -210,7 +222,7 @@ void adminInterFase(int Id){
         case 3:
         if (previlege > 4) {
             std::cout << "You chose to update or check users." << std::endl;
-            updateUsersInterFace();
+            updateUsersInterFace(); // may not be implemented
         } else {
             std::cout << "invaled option" << std::endl;
         }
@@ -218,7 +230,7 @@ void adminInterFase(int Id){
         case 4:
             if (previlege == 7) {
                 std::cout << "You chose to update or check admins." << std::endl;
-                updateAdminsInterFace();
+                updateAdminsInterFace(); // may not be implemented
             } else {
                 std::cout << "Invalid option." << std::endl;
             }
@@ -260,11 +272,11 @@ void userInterFase(int id){
     switch (choice) {
         case 1:
             std::cout << "You chose to check cars." << std::endl;
-            printCarsInfo();
+            printCarsInfo(); // have not implemented yet
             break;
         case 2:
             std::cout << "You chose to check orders and pre orders." << std::endl;
-            checkOrders(id);
+            checkOrders(id); // have not implemented yet
             break;
         case 3:
             std::cout << "You chose to buy a car." << std::endl;

@@ -58,6 +58,15 @@ void modifyCar(int carID){ // if the car has no quantity, and there is someone w
 
 }
 
+void updateCarStocks(int carID){ // TO DO!
+    // This function will list all the cars
+    // and ask the user to enter the car ID and the new quantity
+    // And then use Priority Queue to satisfy the pre orders
+    // And then update the cars.json file with the new quantity
+    // And then update the orders.json file with the new orders getting changed! 
+
+}
+
 // Orders
 void printOrdersInfo(){
 
