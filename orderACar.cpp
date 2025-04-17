@@ -17,7 +17,6 @@ USER INTERFACE
 
 */
 
-
 carLinklist::carLinklist() {
     p = NULL;
 }

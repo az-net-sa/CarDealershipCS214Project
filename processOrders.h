@@ -3,7 +3,7 @@
 
 void processOrder(int buyerID ,int carID);
 
-void processPreOrder(int buyerID , int carID);
+void processPreOrder(int buyerID , int carID );
 
 void checkOrders(int id);
 
@@ -58,10 +58,10 @@ class order{
     }
 };
 
-class preOrder{}; 
+// class preOrder{}; 
 
-class orderStack{}; // Add Orders as stack from book
+// class orderStack{}; // Add Orders as stack from book
 
-class orderQueue{}; // Add Pre Orders as priority queues from book and the internet
+// class orderQueue{}; // Add Pre Orders as priority queues from book and the internet
 
 #endif

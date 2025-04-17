@@ -25,5 +25,14 @@
 		"price" : 135000,
 		"quantity" : 0,
 		"year" : 2021
+	},
+	{
+		"color" : "black",
+		"id" : 4,
+		"make" : "lexus",
+		"model" : "LX 600",
+		"price" : 530000,
+		"quantity" : 0,
+		"year" : 2025
 	}
 ]

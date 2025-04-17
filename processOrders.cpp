@@ -11,8 +11,6 @@ void processOrder(int buyerID ,int carID){
     // now we have to reduce the car quantity in the database and set an order and save the new quantity and the order details in there DBs
     carLinklist cars;
     cars.importCarsFromDataBase();
-    if (cars.checkIfIdExists(carID))
-    {
     cars.reduceCarQuantity(carID);
     cars.exportCarsToDataBase();
     // now add the order to the orders database
@@ -31,18 +29,45 @@ void processOrder(int buyerID ,int carID){
     std::cout << "Your order ID is: " << new_order["orderID"].asInt() << std::endl;
     std::cout << "Your order status is: " << new_order["status"].asString() << std::endl;
     std::cout << "Your car ID is: " << new_order["carID"].asInt() << std::endl;
-    } else
-    {
-        std::cout << "Car ID does not exist!" << std::endl;
-        return; 
-    }
+    
 }
 
-void processPreOrder(int buyerID , int carID){
+void processPreOrder(int buyerID , int carID ){
     std::cout << "You choosed to process your pre order!" << std::endl;
     // now we have to set a pre order and save the buyer place in the queue and the pre order details in there DBs
+    carLinklist cars;
+    cars.importCarsFromDataBase();
+    Json::Value preOrder;
+    std::ifstream preOrdersfile("orders.json", std::ifstream::binary);
+    preOrdersfile >> preOrder;
+    Json::Value new_preOrder;
+    // get Order in queue
+    int orderInQueue = 0;
+    for (int i = 0; i < preOrder.size(); i++)
+    {
+        if (preOrder[i]["carID"].asInt() == carID )
+        {
+            if (preOrder[i]["orderInQueue"].asInt() > orderInQueue)
+            {
+                orderInQueue = preOrder[i]["orderInQueue"].asInt();
+            }
+            
+        }
+    }
 
-    // use queue datastructure to save the buyer place in the queue
+    new_preOrder["buyerID"] = buyerID;
+    new_preOrder["carID"] = carID;
+    new_preOrder["status"] = "pre order";
+    new_preOrder["orderID"] = preOrder[preOrder.size() - 1]["orderID"].asInt() + rand() % 1000 + 1;
+    new_preOrder["orderInQueue"] = orderInQueue + 1;
+    preOrder.append(new_preOrder);
+    std::ofstream preOrders_file_out("orders.json");
+    preOrders_file_out << preOrder;
+    std::cout << "Pre order processed successfully!" << std::endl;
+    std::cout << "Your pre order ID is: " << new_preOrder["orderID"].asInt() << std::endl;
+    std::cout << "Your pre order status is: " << new_preOrder["status"].asString() << std::endl;
+    std::cout << "Your car ID is: " << new_preOrder["carID"].asInt() << std::endl;
+    std::cout << "Your place in the queue is: " << new_preOrder["orderInQueue"].asInt() << std::endl;
 }
 
 void checkOrders(int buyerID){
