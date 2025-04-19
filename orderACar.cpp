@@ -4,6 +4,7 @@
 #include <jsoncpp/json/json.h>
 #include "orderACar.h"
 #include "processOrders.h"
+#include "adminActions.h"
 
 /*
 helpfull sourses:
@@ -180,6 +181,20 @@ Car carLinklist::getCar(int id) {
     return Car();
 }
 
+void carLinklist::increaseCarQuantity(int id, int quantity) {
+    node *temp;
+    temp = p;
+    while (temp != NULL)
+    {
+        if (temp -> data.getID() == id)
+        {
+            temp -> data.increaseQuantity(quantity);
+            return;
+        }
+        temp = temp -> link;
+    }
+    std::cout << "Car not found!" << std::endl;
+}
 void carLinklist::reduceCarQuantity(int id) {
     node *temp;
     temp = p;
@@ -194,14 +209,15 @@ void carLinklist::reduceCarQuantity(int id) {
     }
     std::cout << "Car not found!" << std::endl;
 }
+
 bool orderACarInterface(int buyerID){ // true if order is seccessful
     carLinklist cars;
-    cars.importCarsFromDataBase();
+    cars.importCarsFromDataBase(); // Move cars data from disk to memory
     std::cout << "You choosed to Order a new car!\n... listing cars:" << std::endl;
     while (1)
     {
-    cars.listAll();
-    std::cout << "Please enter the car ID you want to order: , or you can inter 0 to cancel " << std::endl;
+        printCarsInfo();
+        std::cout << "Please enter the car ID you want to order: , or you can inter 0 to cancel " << std::endl;
     int carID;
     std::cin >> carID;
     if (carID == 0)

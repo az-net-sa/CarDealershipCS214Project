@@ -86,7 +86,7 @@ int userLogin(){  // this returns the user id or 0 if the admin is not found
             }
         }}
 
-int createUser(){
+int createUser(){ // this returns the new user id
     std::cout << "Creating a new user..." << std::endl;
     Json::Value users;
     std::ifstream users_file("users.json", std::ifstream::binary);
@@ -112,7 +112,7 @@ int createUser(){
         }     
     }
     
- 
+    new_user["name"] = name;
     std::cout << "Please enter your password: " << std::endl;
     std::string password;
     std::cin >> password;

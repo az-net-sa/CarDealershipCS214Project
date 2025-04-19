@@ -133,7 +133,7 @@ void updateCarsInterFace(){ // TO DO!
         // Add do while to keep asking for input until he exits
         case 1:
             std::cout << "You chose to get cars info." << std::endl;
-            printCarsInfo(); // have not implemented yet
+            printCarsInfo(); 
             break;
         case 2:
             std::cout << "You chose to add new car." << std::endl;
@@ -153,6 +153,7 @@ void updateCarsInterFace(){ // TO DO!
             break;
         case 4:
             std::cout << "You chose to update stocks for cars." << std::endl;
+            printCarsInfo(); 
             std::cout << "Please enter the car ID you want to update stocks for: , or you can inter 0 to cancel" << std::endl;
             int carId;
             std::cin >> carId;
@@ -160,7 +161,15 @@ void updateCarsInterFace(){ // TO DO!
                 std::cout << "Cancelling..." << std::endl;
                 break;
             }
-            updateCarStocks(carId); // TO DO!
+            std::cout << "Please enter the Added quantity for the car: " << std::endl;
+            int addedStock;
+            std::cin >> addedStock;
+            if (addedStock == 0) {
+                std::cout << "Cancelling..." << std::endl;
+                break;
+            }
+            std::cout << "You chose to update stocks for car ID: " << carId << " with added stock: " << addedStock << std::endl;
+            updateCarStocks(carId , addedStock); // TO DO!
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
@@ -244,6 +253,7 @@ void adminInterFase(int Id){
     }
 }
 }
+
 void userInterFase(int id){
     std::string name;
     Json::Value users;
@@ -272,7 +282,7 @@ void userInterFase(int id){
     switch (choice) {
         case 1:
             std::cout << "You chose to check cars." << std::endl;
-            printCarsInfo(); // have not implemented yet
+            printCarsInfo(); 
             break;
         case 2:
             std::cout << "You chose to check orders and pre orders." << std::endl;

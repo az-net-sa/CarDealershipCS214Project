@@ -52,6 +52,16 @@ class Car{
             quantity--;
             return *this;
         } // No real need for this operator, just flexing
+        Car operator++() {
+            quantity++;
+            return *this;
+        } // No real need for this operator, just flexing
+        void setQuantity(int newQuantity) {
+            quantity = newQuantity;
+        }
+        void increaseQuantity(int newQuantity) {
+            quantity += newQuantity;
+        }
 };
 
 class carLinklist {
@@ -73,6 +83,7 @@ bool CheckIfCarAvailable(int id);
 bool checkIfIdExists(int id);
 Car getCar(int id);
 void reduceCarQuantity(int id);
+void increaseCarQuantity(int id, int quantity);
 };
 
 class Order{

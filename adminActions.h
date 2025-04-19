@@ -23,9 +23,7 @@ class user{
         } 
 };
 
-class userHeapTree{
 
-};
 
 class admin{
     private:
@@ -73,8 +71,7 @@ void deleteCar(int carID);
 
 void modifyCar(int carID); // if the car has no quantity, and there is someone who pre ordered it, his order should be move to the orders list, and the queue should be updated
 
-void updateCarStocks(int carID); // TO DO!
-// Orders
+void updateCarStocks(int carID , int addedStock);
 void printOrdersInfo();
 void deleteOrder(int orderID);
 void printPreOrdersInfo();
