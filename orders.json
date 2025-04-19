@@ -22,14 +22,14 @@
 		"carID" : 4,
 		"orderID" : 1307,
 		"orderInQueue" : 1,
-		"status" : "pre order"
+		"status" : "processedd2"
 	},
 	{
 		"buyerID" : 456,
 		"carID" : 4,
 		"orderID" : 2194,
 		"orderInQueue" : 2,
-		"status" : "pre order"
+		"status" : "processedd2"
 	},
 	{
 		"buyerID" : 4052,

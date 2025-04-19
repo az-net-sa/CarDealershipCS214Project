@@ -116,44 +116,4 @@ class Order{
         }  
 };
 
-class preOrder{
-    private:
-        int id;
-        int carID;
-        int buyerID;
-        int queuePosition;
-        std::string status;
-    public:
-        preOrder(int id, int carID, int buyerID, std::string status)
-            : id(id), carID(carID), buyerID(buyerID), status(status) {}
-        void display() {
-            std::cout << "Pre Order ID: " << id << ", Car ID: " << carID
-                      << ", Buyer ID: " << buyerID << ", Status: " << status << std::endl;
-        }
-        int getID() {
-            return id;
-        }
-        int getCarID() {
-            return carID;
-        }
-        int getBuyerID() {
-            return buyerID;
-        }
-        std::string getStatus() {
-            return status;
-        }
-        int getQueuePosition() {
-            return queuePosition;
-        }
-        void setQueuePosition(int newQueuePosition) {
-            queuePosition = newQueuePosition;
-        }
-        preOrder operator--() {
-            queuePosition--;
-            return *this;
-        } // No real need for this operator, just flexing
-        void setStatus(std::string newStatus) {
-            status = newStatus;
-        }
-};
 #endif

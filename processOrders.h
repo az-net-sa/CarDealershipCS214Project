@@ -113,28 +113,44 @@ class preOrdersPriorityQueues{
             std::cout << "No pre orders for this car!" << std::endl;
             return -1;
         } 
+        if (this -> usedSpace == 1){
+            int orderID = preOrders[0].getOrderID();
+            this -> usedSpace--;
+            return orderID;
+        }
         int min = 9999999; // the lowest queue position
-        int orderID = 0; // the order ID of the pre order that will be satisfied next
-        for (int i = 0; i < this -> usedSpace; i++){
-            if (preOrders[i].getOrderPosition() < min ){
+        int orderID = -2; // the order ID of the pre order that will be satisfied next
+        int minIndex = -1; // index of the pre order with the lowest queue position
+        for (int i = 0; i < this -> usedSpace; i++) {
+            if (preOrders[i].getOrderPosition() < min) {
                 min = preOrders[i].getOrderPosition();
                 orderID = preOrders[i].getOrderID();
+                minIndex = i;
             }
-    }
-
+        }
+        // Remove the pre order with the lowest queue position
+        for (int i = minIndex; i < this -> usedSpace - 1; i++) {
+            preOrders[i] = preOrders[i + 1];
+        }
+        this -> usedSpace--;
+        std::cout << "The next pre order to be satisfied is: " << orderID << std::endl;
         return orderID;
     }
 
-    void importPreOrdersFromDataBase(int carID){
+    void importPreOrdersFromDataBase(){
         Json::Value preOrders;
         std::ifstream orders_file("orders.json", std::ifstream::binary);
         orders_file >> preOrders;
+        int preOrdersCount = 0;
         for (int i = 0; i < preOrders.size(); i++) {
             if (preOrders[i]["carID"].asInt() == carID && preOrders[i]["status"].asString() == "pre order") {
-                preOrder preOrder(preOrders[i]["id"].asInt(), preOrders[i]["buyerID"].asInt(), preOrders[i]["carID"].asInt(), preOrders[i]["queuePosition"].asInt());
+                preOrder preOrder(preOrders[i]["orderID"].asInt(), preOrders[i]["buyerID"].asInt(), preOrders[i]["carID"].asInt(), preOrders[i]["orderInQueue"].asInt());
+                std::cout << "Importing pre order: " << preOrders[i]["orderID"].asInt() << "buyer ID: " << preOrders[i]["buyerID"].asInt() << "car ID: " << preOrders[i]["carID"].asInt() << "queue position: " << preOrders[i]["orderInQueue"].asInt() << std::endl;
                 addPreOrder(preOrder);
             }
         }
+        std::cout << "Pre orders imported successfully!" << std::endl;
+        std::cout << "Pre orders count: " << usedSpace << std::endl;
     }
         
 }; // Add Pre Orders as priority queues from book and the internet
