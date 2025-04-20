@@ -76,6 +76,7 @@ void updateCarStocks(int const carID , int const addedStock){ // TO DO!
     } else if (cars.CheckIfCarAvailable(carID)) { // if there is alrady a stock for the car, there is no need to check for pre orders
         std::cout << "Car is already available in stock! the new stock will be added" << std::endl;
         cars.increaseCarQuantity(carID , addedStock);
+        cars.exportCarsToDataBase();
     } else { // now check for pre orders
         Json::Value orders;
         std::ifstream orders_file("orders.json", std::ifstream::binary);

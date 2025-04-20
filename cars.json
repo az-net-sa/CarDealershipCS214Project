@@ -14,7 +14,7 @@
 		"make" : "Honda",
 		"model" : "Accord",
 		"price" : 62000,
-		"quantity" : 2,
+		"quantity" : 4,
 		"year" : 2019
 	},
 	{
@@ -23,7 +23,7 @@
 		"make" : "Ford",
 		"model" : "F150",
 		"price" : 135000,
-		"quantity" : 0,
+		"quantity" : 4,
 		"year" : 2021
 	},
 	{
